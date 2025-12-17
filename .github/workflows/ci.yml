@@ -20,7 +20,7 @@ jobs:
         username: ${{ secrets.VPS_USER }}
         key: ${{ secrets.DEPLOY_KEY }}
         script: |
-          cd /home/deployer/apps/tp_node_js/tp_node_js
+          cd /home/deployer/apps/tp_node_js
           git pull
           docker build -t node-app .
           docker rm -f node-app || true
