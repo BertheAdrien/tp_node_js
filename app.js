@@ -11,8 +11,10 @@ var adminRouter = require('./routes/admin');
 
 var app = express();
 
-app.listen(8080, () => {
-  console.log("Serveur lancé sur le port 8080");
+const PORT = process.env.PORT || 8080;
+
+app.listen(PORT, "0.0.0.0", () => {
+  console.log(`Server running on port ${PORT}`);
 });
 
 // view engine setup
