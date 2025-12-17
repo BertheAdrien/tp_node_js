@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <%- include('./layout/head.ejs') %>
+    </head>
+<body>
+    <header>
+        <%- include('./layout/header.ejs') %>
+    </header>
+
+    <div class="form-container">
+    <h1>Connexion</h1>
+
+    <form method="post" action="/admin/login">
+
+        <label>Email</label>
+        <input type="login" name="login" required>
+
+        <label>Mot de passe</label>
+        <input type="password" name="password" required>
+
+        <button type="submit">Se connecter</button>
+    </form>
+    </div>
+    </div>
+
+    <footer>
+    <%- include('./layout/footer.ejs') %>
+    </footer>
+
+</body>
+</html>
