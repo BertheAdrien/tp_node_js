@@ -174,7 +174,16 @@
     const msg = document.createElement('div');
     msg.classList.add('message');
     
-    msg.innerHTML = `<span class="pseudo">${data.pseudo}:/spa<n> ${data.message}`;
+    const now = new Date();
+    const hours = now.getHours().toString().padStart(2, '0');
+    const minutes = now.getMinutes().toString().padStart(2, '0');
+    const time = `${hours}:${minutes}`;
+
+    msg.innerHTML = `
+    <span class="pseudo">${data.pseudo}:</span>
+    <span class="text">${data.message}</span>
+    <span class="time">${time}</span>
+  `;
     messagesDiv.appendChild(msg);
     messagesDiv.scrollTop = messagesDiv.scrollHeight;
   });
