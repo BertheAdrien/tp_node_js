@@ -134,7 +134,7 @@
 
     </div>
   </main>
-<script src="/socket.io/socket.io.js"></script>
+<script src="socket.io/socket.io.js"></script>
 <script>
 
   const socket = io();
@@ -143,6 +143,7 @@
   const pseudoInput = document.getElementById('pseudo');
   const messageInput = document.getElementById('messageInput');
   const messagesDiv = document.getElementById('messages');
+  //datetime
 
   document.getElementById('savePseudo').addEventListener('click', () => {
     if (pseudoInput.value.trim() !== '') {
@@ -171,8 +172,9 @@
 
   socket.on('chatMessage', (data) => {
     const msg = document.createElement('div');
+    console.log("OUEOUE")
     msg.classList.add('message');
-    msg.innerHTML = `<span class="pseudo">${data.pseudo}:</span> ${data.message}`;
+    msg.innerHTML = `<span class="pseudo">${data.pseudo}:/spa<n> ${data.message}`;
     messagesDiv.appendChild(msg);
     messagesDiv.scrollTop = messagesDiv.scrollHeight;
   });
