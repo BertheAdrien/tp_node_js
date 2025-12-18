@@ -172,7 +172,6 @@
 
   socket.on('chatMessage', (data) => {
     const msg = document.createElement('div');
-    console.log("OUEOUE")
     msg.classList.add('message');
     msg.innerHTML = `<span class="pseudo">${data.pseudo}:/spa<n> ${data.message}`;
     messagesDiv.appendChild(msg);
