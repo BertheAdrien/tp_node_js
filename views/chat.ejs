@@ -195,6 +195,18 @@
     messageInput.value = '';
   }
 
+const badWords = ['justin', 'connard', 'con', 'pute'];
+
+function filterBadWords(text) {
+  if (typeof text !== 'string') return '';
+  let filteredText = text;
+  badWords.forEach(word => {
+    const regex = new RegExp(word, 'gi');
+    filteredText = filteredText.replace(regex, '*'.repeat(word.length));
+  });
+  return filteredText;
+}
+
 socket.on('chatMessage', (data) => {
   const msg = document.createElement('div');
   msg.classList.add('message');
@@ -205,7 +217,7 @@ socket.on('chatMessage', (data) => {
 
   const textSpan = document.createElement('span');
   textSpan.classList.add('text');
-  textSpan.textContent = data.message; // 🔐 sécurisé
+  textSpan.textContent = filterBadWords(data.message);
 
   const timeSpan = document.createElement('span');
   timeSpan.classList.add('time');
