@@ -14,6 +14,10 @@ router.get('/connexion', function(req, res, next) {
   res.render('connexion', { title: 'Connexion' });
 });
 
+router.get('/chat', (req, res) => {
+  res.render('chat', { title: 'Chat de fou' });
+});
+
 router.get('/dab', (req, res) => {
   if (!req.session.user) return res.redirect('/connexion'); 
   res.render('dab', { title: 'Mon Dashboard' });

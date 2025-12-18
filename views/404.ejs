@@ -1,49 +1,75 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Page non trouvée</title>
+  <title>404 – Lost in the Grid</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
   <style>
     body {
-      margin: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: #f2f2f2;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      font-family: 'Orbitron', sans-serif;
+      background: linear-gradient(180deg, #1a0033, #2d0a4e, #4a1c75);
       height: 100vh;
-      flex-direction: column;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       text-align: center;
-      color: #333;
+      color: white;
+      overflow: hidden;
     }
+
+    .container {
+      padding: 60px;
+      border-radius: 20px;
+      background: rgba(20, 0, 40, 0.9);
+      border: 2px solid #ff00c8;
+      box-shadow: 0 0 40px rgba(255, 0, 200, 0.7);
+    }
+
     h1 {
       font-size: 8rem;
       margin: 0;
-      color: #e74c3c;
+      background: linear-gradient(90deg, #ff00c8, #8b00ff, #ff7800);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: glow 2s infinite alternate;
     }
+
     h2 {
-      margin: 10px 0;
-      font-size: 2rem;
+      margin-top: 10px;
+      color: #00b4ff;
+      text-shadow: 0 0 15px #00b4ff;
     }
+
     a {
       display: inline-block;
-      margin-top: 20px;
+      margin-top: 30px;
+      padding: 15px 30px;
+      border-radius: 30px;
       text-decoration: none;
-      background: #3498db;
-      color: white;
-      padding: 10px 20px;
-      border-radius: 5px;
+      font-weight: bold;
+      color: #1a0033;
+      background: #ff00c8;
+      box-shadow: 0 0 25px #ff00c8;
       transition: 0.3s;
     }
+
     a:hover {
-      background: #2980b9;
+      background: #00b4ff;
+      box-shadow: 0 0 30px #00b4ff;
+    }
+
+    @keyframes glow {
+      from { text-shadow: 0 0 20px #ff00c8; }
+      to { text-shadow: 0 0 40px #ff7800; }
     }
   </style>
 </head>
 <body>
-  <h1>404</h1>
-  <h2>T'as rien a faire ici 🖕</h2>
-  <a href="/">Retour à l'accueil</a>
+  <div class="container">
+    <h1>404</h1>
+    <h2>T'as rien a faire ici 🖕</h2>
+    <a href="/">Retour à l'acceuil</a>
+  </div>
 </body>
 </html>

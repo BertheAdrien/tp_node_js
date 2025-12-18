@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chat Synthwave</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/stylesheets/style.css">
+
+  <style>
+
+ /* PAGE CHAT */
+.chat-page {
+  display: flex;
+  justify-content: center;
+  padding: 60px 20px;
+  position: relative;
+  z-index: 2;
+}
+
+/* CONTAINER */
+    .chat-page .chat-container {
+    width: 100%;
+    max-width: 900px;
+    height: 75vh;
+    background: rgba(20, 0, 40, 0.9);
+    border-radius: 20px;
+    border: 2px solid #00b4ff;
+    box-shadow: 0 0 40px rgba(0, 180, 255, 0.6);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    }
+
+    /* HEADER */
+    .chat-page .chat-header {
+    padding: 20px;
+    text-align: center;
+    background: linear-gradient(90deg, #ff00c8, #00b4ff);
+    color: #1a0033;
+    font-weight: 900;
+    letter-spacing: 2px;
+    }
+
+    /* PSEUDO */
+    .chat-page .pseudo-form {
+    padding: 15px;
+    border-bottom: 2px solid #8b00ff;
+    display: flex;
+    gap: 10px;
+    }
+
+    /* MESSAGES */
+    .chat-page .messages {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+    color: white;
+    }
+
+    .chat-page .message {
+    margin-bottom: 15px;
+    }
+
+    .chat-page .pseudo {
+    color: #ff7800;
+    font-weight: bold;
+    }
+
+    /* INPUT MESSAGE */
+    .chat-page .chat-input {
+    padding: 15px;
+    border-top: 2px solid #8b00ff;
+    display: flex;
+    gap: 10px;
+    }
+
+    /* INPUTS CHAT UNIQUEMENT */
+    .chat-page input {
+    flex: 1;
+    padding: 12px;
+    border-radius: 10px;
+    border: 2px solid #8b00ff;
+    background: rgba(30, 0, 50, 0.7);
+    color: white;
+    font-family: 'Orbitron', sans-serif;
+    }
+
+    /* BOUTONS CHAT UNIQUEMENT */
+    .chat-page button {
+    padding: 12px 20px;
+    border-radius: 30px;
+    border: none;
+    background: #ff00c8;
+    color: #1a0033;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 0 20px #ff00c8;
+    }
+
+    .chat-page button:hover {
+    background: #00b4ff;
+    box-shadow: 0 0 25px #00b4ff;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <%- include('./layout/header.ejs') %>
+  </header>
+
+  <main class="chat-page">
+    <div class="chat-container">
+
+      <div class="chat-header">CHAT DE ZINZIN</div>
+
+      <div class="pseudo-form">
+        <input id="pseudo" type="text" placeholder="Ton pseudo" />
+        <button id="savePseudo">OK</button>
+      </div>
+
+      <div class="messages" id="messages">
+        <div class="message">
+          <span class="pseudo">Giles:</span>
+          Bienvenue dans le chat de la mémoire 🚀
+        </div>
+      </div>
+
+      <div class="chat-input">
+        <input id="messageInput" type="text" placeholder="Écris ton message..." />
+        <button id="sendMessage">Envoyer</button>
+      </div>
+
+    </div>
+  </main>
+<script src="/socket.io/socket.io.js"></script>
+<script>
+
+  const socket = io();
+  let pseudo = '';
+
+  const pseudoInput = document.getElementById('pseudo');
+  const messageInput = document.getElementById('messageInput');
+  const messagesDiv = document.getElementById('messages');
+
+  document.getElementById('savePseudo').addEventListener('click', () => {
+    if (pseudoInput.value.trim() !== '') {
+      pseudo = pseudoInput.value.trim();
+      pseudoInput.disabled = true;
+      pseudoInput.style.opacity = 0.6;
+    }
+  });
+
+  document.getElementById('sendMessage').addEventListener('click', sendMessage);
+
+  messageInput.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') sendMessage();
+  });
+
+  function sendMessage() {
+    if (!pseudo || !messageInput.value.trim()) return;
+
+    socket.emit('chatMessage', {
+      pseudo,
+      message: messageInput.value
+    });
+
+    messageInput.value = '';
+  }
+
+  socket.on('chatMessage', (data) => {
+    const msg = document.createElement('div');
+    msg.classList.add('message');
+    msg.innerHTML = `<span class="pseudo">${data.pseudo}:</span> ${data.message}`;
+    messagesDiv.appendChild(msg);
+    messagesDiv.scrollTop = messagesDiv.scrollHeight;
+  });
+</script>
+</body>

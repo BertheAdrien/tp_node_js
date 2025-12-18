@@ -87,6 +87,32 @@ header a.dashboard {
   color: #ff7800;
 }
 
+header h2 a.header-title {
+  color: #ff7800;
+  text-decoration: none;
+  text-shadow: 0 0 15px #ff7800, 0 0 30px #ff00c8;
+  font-weight: 900;
+  letter-spacing: 2px;
+  transition: all 0.3s ease;
+}
+
+header h2 a.header-title:hover {
+  color: #00b4ff;
+  text-shadow:
+    0 0 15px #00b4ff,
+    0 0 35px #00b4ff,
+    0 0 50px #ff00c8;
+}
+
+header h2 a.header-title {
+  padding: 0;
+  border: none;
+  background: none;
+  border-radius: 0;
+  text-transform: none;
+  font-size: inherit;
+}
+
 header a.dashboard:hover {
   background: #ff7800;
   color: #1a0033;
@@ -97,6 +123,12 @@ header a.logout {
   background: rgba(255, 0, 200, 0.2);
   border-color: #ff00c8;
   color: #ff00c8;
+}
+
+header a.chat {
+  background: rgba(0, 180, 255, 0.2);
+  border-color: #00b4ff;
+  color: #00b4ff;
 }
 
 header a.errorButton {
@@ -113,6 +145,12 @@ header a.logout:hover {
   background: #ff00c8;
   color: #1a0033;
   box-shadow: 0 0 20px #ff00c8;
+}
+
+header a.chat:hover {
+  background: #00b4ff;
+  color: #0b0020;
+  box-shadow: 0 0 25px #00b4ff;
 }
 
 header a.errorButton:hover {

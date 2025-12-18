@@ -1,14 +1,17 @@
-    <% if (user) { %>
-      <span class="userLogin">👤 <%= user.login %></span>
-    <% } %>
+<% if (user) { %>
+    <span class="userLogin">👤 <%= user.login %></span>
+<% } %>
 
-  <h2>SITE DU FUTUR</h2>
+<h2>
+  <a href="/connexion" class="header-title">SITE DU FUTUR</a>
+</h2>
 
-  <div>
-    <% if (user) { %>
-      <a href="/dab" class="dashboard">Dashboard</a>
-      <a href="/logout" class="logout">Déconnexion</a>
-    <% } %>
-    <a href="chat" class="chat">404</a>
+<div>
+    <a href="chat" class="chat">chat</a>
+<% if (user) { %>
+    <a href="/dab" class="dashboard">Dashboard</a>
+    <a href="/logout" class="logout">Déconnexion</a>
+<% } %>
+
     <a href="error" class="errorButton">404</a>
-  </div>
+</div>
