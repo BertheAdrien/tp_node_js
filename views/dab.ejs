@@ -1,18 +1,72 @@
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <%- include('./layout/head.ejs') %>
-    </head>
+<html lang="fr">
+<head>
+  <%- include('./layout/head.ejs') %>
+  <style>
+    /* Container principal */
+    main.wip {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 70vh; /* laisse de la place pour header/footer */
+      text-align: center;
+      font-family: 'Orbitron', sans-serif;
+      color: #ff7800;
+    }
+
+    /* Titre WIP */
+    main.wip h1 {
+      font-size: 42px;
+      font-weight: 900;
+      letter-spacing: 3px;
+      background: linear-gradient(90deg, #ff00c8, #8b00ff, #ff7800);
+      background-size: 200% 100%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: gradientShift 3s linear infinite;
+      text-shadow:
+        0 0 10px #ff00c8,
+        0 0 20px #ff7800,
+        0 0 30px #8b00ff;
+      margin-bottom: 20px;
+    }
+
+    /* Message WIP */
+    main.wip p {
+      font-size: 22px;
+      font-weight: 700;
+      color: #00b4ff;
+      text-shadow:
+        0 0 8px #00b4ff,
+        0 0 15px #ff00c8;
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    /* Animation gradient du titre */
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* Animation pulse pour le message */
+    @keyframes pulse {
+      0%, 100% { text-shadow: 0 0 8px #00b4ff, 0 0 15px #ff00c8; }
+      50% { text-shadow: 0 0 20px #00b4ff, 0 0 30px #ff00c8; }
+    }
+  </style>
+</head>
 <body>
-    <header>
-        <%- include('./layout/header.ejs') %>
-    </header>
+  <header>
+    <%- include('./layout/header.ejs') %>
+  </header>
 
+  <main class="wip">
     <h1>DISTRIBUTEUR</h1>
+    <p>🚧 Work in Progress… Patience !</p>
+  </main>
 
-    <footer>
     <%- include('./layout/footer.ejs') %>
-    </footer>
-
 </body>
 </html>

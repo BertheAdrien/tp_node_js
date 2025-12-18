@@ -1,18 +1,65 @@
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <%- include('./layout/head.ejs') %>
-    </head>
+<html lang="fr">
+<head>
+  <%- include('./layout/head.ejs') %>
+  <style>
+    /* Container principal */
+    main.dashboard {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 70vh; /* laisse de la place pour header/footer */
+      color: #ff7800;
+      font-family: 'Orbitron', sans-serif;
+      text-align: center;
+    }
+
+    /* Titre principal */
+    main.dashboard h1 {
+      font-size: 36px;
+      font-weight: 900;
+      letter-spacing: 2px;
+      background: linear-gradient(90deg, #ff00c8, #8b00ff, #ff7800);
+      background-size: 200% 100%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: gradientShift 3s linear infinite;
+      text-shadow:
+        0 0 10px #ff00c8,
+        0 0 20px #ff7800,
+        0 0 30px #8b00ff;
+      margin-bottom: 20px;
+    }
+
+    /* Message admin connecté */
+    main.dashboard p {
+      font-size: 18px;
+      font-weight: 700;
+      color: #00b4ff;
+      text-shadow:
+        0 0 8px #00b4ff,
+        0 0 15px #ff00c8;
+      margin: 0;
+    }
+
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+  </style>
+</head>
 <body>
-    <header>
-        <%- include('./layout/header.ejs') %>
-    </header>
+  <header>
+    <%- include('./layout/header.ejs') %>
+  </header>
 
+  <main class="dashboard">
     <h1>DASHBOARD ADMIN</h1>
+    <p>✅ L’administrateur est bien connecté !</p>
+  </main>
 
-    <footer>
-    <%- include('./layout/footer.ejs') %>
-    </footer>
-
+  <%- include('./layout/footer.ejs') %>
 </body>
 </html>

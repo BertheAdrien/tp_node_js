@@ -1,1 +1,81 @@
-<h3>Ceci est un footer de zinzin</h3>
+<style>
+      /* 🌌 Footer synthwave */
+footer {
+  position: relative;
+  z-index: 10;
+  padding: 30px 20px;
+  text-align: center;
+  background: linear-gradient(90deg, rgba(255, 0, 200, 0.3), rgba(255, 120, 0, 0.3));
+  backdrop-filter: blur(10px);
+  border-top: 2px solid #ff00c8;
+  box-shadow: 0 -4px 20px rgba(255, 0, 200, 0.4);
+  color: #ff7800;
+  font-family: 'Orbitron', sans-serif;
+  letter-spacing: 1px;
+  font-weight: 700;
+}
+
+/* Texte du footer avec glow */
+footer h3 {
+  font-weight: 900;
+  font-size: 18px;
+  color: #ff7800;
+  text-shadow:
+    0 0 8px #ff7800,
+    0 0 15px #ff00c8,
+    0 0 25px #ff7800;
+  margin: 0;
+}
+
+/* Effet hover pour liens éventuels dans le footer */
+footer a {
+  color: #ff00c8;
+  text-decoration: none;
+  transition: all 0.3s;
+  text-shadow: 0 0 5px #ff00c8;
+}
+
+footer a:hover {
+  color: #00b4ff;
+  text-shadow:
+    0 0 10px #00b4ff,
+    0 0 25px #ff00c8;
+}
+
+/* Petite animation de glow pulsant */
+@keyframes footerGlow {
+  0%, 100% {
+    text-shadow:
+      0 0 8px #ff7800,
+      0 0 15px #ff00c8,
+      0 0 25px #ff7800;
+  }
+  50% {
+    text-shadow:
+      0 0 12px #ff7800,
+      0 0 20px #ff00c8,
+      0 0 35px #ff7800;
+  }
+}
+
+footer h3 {
+  animation: footerGlow 2.5s ease-in-out infinite;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  footer {
+    padding: 20px 10px;
+  }
+  
+  footer h3 {
+    font-size: 16px;
+  }
+}
+</style>
+
+
+<footer>
+    <h3>Ceci est un footer de zinzin</h3>
+    <p>© 2025 ZINZIN Corp - Tous droits réservés</p>
+</footer>

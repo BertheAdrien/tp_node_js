@@ -20,7 +20,7 @@ router.get('/chat', (req, res) => {
 
 router.get('/dab', (req, res) => {
   if (!req.session.user) return res.redirect('/connexion'); 
-  res.render('dab', { title: 'Mon Dashboard' });
+  res.render('dab', { title: 'Distributeur' });
 });
 
 router.post('/connexion', function(req, res, next) {
