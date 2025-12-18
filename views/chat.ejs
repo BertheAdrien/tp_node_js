@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Chat Synthwave</title>
+  <title> <%= title %> </title>
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/stylesheets/style.css">
 
@@ -137,7 +137,7 @@
   <main class="chat-page">
     <div class="chat-container">
 
-      <div class="chat-header">CHAT DE ZINZIN</div>
+      <div class="chat-header">CHAT DE ZINZIN 1</div>
 
       <div class="pseudo-form">
         <input id="pseudo" type="text" placeholder="Ton pseudo" />
@@ -153,19 +153,22 @@
         <input id="messageInput" type="text" placeholder="Écris ton message..." />
         <button id="sendMessage">Envoyer</button>
       </div>
-
     </div>
   </main>
-<script src="socket.io/socket.io.js"></script>
+<!-- 
+  <script src="https://cdn.socket.io/4.7.2/socket.io.min.js" integrity="sha384-4gSxlN...==" crossorigin="anonymous"></script>
+
+-->
+    <script src="/socket.io/socket.io.js"></script>
 <script>
 
-  const socket = io();
+  const socket = io('http://127.0.0.1:8080')
+
   let pseudo = '';
 
   const pseudoInput = document.getElementById('pseudo');
   const messageInput = document.getElementById('messageInput');
   const messagesDiv = document.getElementById('messages');
-  //datetime
 
   document.getElementById('savePseudo').addEventListener('click', () => {
     if (pseudoInput.value.trim() !== '') {
@@ -193,21 +196,32 @@
   }
 
   socket.on('chatMessage', (data) => {
-    const msg = document.createElement('div');
-    msg.classList.add('message');
-    
-    const now = new Date();
-    const hours = now.getHours().toString().padStart(2, '0');
-    const minutes = now.getMinutes().toString().padStart(2, '0');
-    const time = `${hours}:${minutes}`;
+  const msg = document.createElement('div');
+  msg.classList.add('message');
 
-    msg.innerHTML = `
-    <span class="pseudo">${data.pseudo}:</span>
-    <span class="text">${data.message}</span>
-    <span class="time">${time}</span>
-  `;
-    messagesDiv.appendChild(msg);
-    messagesDiv.scrollTop = messagesDiv.scrollHeight;
-  });
+  const pseudoSpan = document.createElement('span');
+  pseudoSpan.classList.add('pseudo');
+  pseudoSpan.textContent = `${data.pseudo}:`;
+
+  const textSpan = document.createElement('span');
+  textSpan.classList.add('text');
+  textSpan.textContent = data.message; // 🔐 sécurisé
+
+  const timeSpan = document.createElement('span');
+  timeSpan.classList.add('time');
+
+  const now = new Date();
+  const hours = now.getHours().toString().padStart(2, '0');
+  const minutes = now.getMinutes().toString().padStart(2, '0');
+  timeSpan.textContent = `${hours}:${minutes}`;
+
+  msg.appendChild(pseudoSpan);
+  msg.appendChild(textSpan);
+  msg.appendChild(timeSpan);
+
+  messagesDiv.appendChild(msg);
+  messagesDiv.scrollTop = messagesDiv.scrollHeight;
+});
+
 </script>
 </body>
