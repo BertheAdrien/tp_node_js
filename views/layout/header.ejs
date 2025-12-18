@@ -1,1 +1,14 @@
-<h1>Bienvenu sur le header de fou</h1>
+    <% if (user) { %>
+      <span class="userLogin">👤 <%= user.login %></span>
+    <% } %>
+
+  <h2>SITE DU FUTUR</h2>
+
+  <div>
+    <% if (user) { %>
+      <a href="/dab" class="dashboard">Dashboard</a>
+      <a href="/logout" class="logout">Déconnexion</a>
+    <% } %>
+    <a href="chat" class="chat">404</a>
+    <a href="error" class="errorButton">404</a>
+  </div>
