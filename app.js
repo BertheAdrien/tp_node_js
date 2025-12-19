@@ -43,6 +43,9 @@ app.use(session({
   cookie: { maxAge: 1000 * 60 * 60 }
 }));
 
+const usersRoutes = require("./routes/users")
+app.use("/users", usersRoutes)
+
 app.use((req, res, next) => {
   res.locals.user = req.session.user || null;
   next();
