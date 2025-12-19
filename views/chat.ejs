@@ -206,7 +206,7 @@ function filterBadWords(text) {
   return filteredText;
 }
 
-socket.on('chatMessage', (data) => {
+function addMessage(data) {
   const msg = document.createElement('div');
   msg.classList.add('message');
 
@@ -216,15 +216,11 @@ socket.on('chatMessage', (data) => {
 
   const textSpan = document.createElement('span');
   textSpan.classList.add('text');
-  textSpan.textContent = filterBadWords(data.message);
+  textSpan.textContent = data.message;
 
   const timeSpan = document.createElement('span');
   timeSpan.classList.add('time');
-
-  const now = new Date();
-  const hours = now.getHours().toString().padStart(2, '0');
-  const minutes = now.getMinutes().toString().padStart(2, '0');
-  timeSpan.textContent = `${hours}:${minutes}`;
+  timeSpan.textContent = data.time;
 
   msg.appendChild(pseudoSpan);
   msg.appendChild(textSpan);
@@ -232,7 +228,17 @@ socket.on('chatMessage', (data) => {
 
   messagesDiv.appendChild(msg);
   messagesDiv.scrollTop = messagesDiv.scrollHeight;
+}
+
+socket.on('chatHistory', (history) => {
+  messagesDiv.innerHTML = ''; 
+  history.forEach(msg => addMessage(msg));
 });
+
+socket.on('chatMessage', (data) => {
+  addMessage(data);
+});
+
 
 </script>
 </body>

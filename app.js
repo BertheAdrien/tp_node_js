@@ -11,6 +11,8 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var adminRouter = require('./routes/admin');
 
+const messages = []; 
+
 var app = express();
 const PORT = process.env.PORT || 8080;
 
@@ -19,9 +21,19 @@ const io = new Server(server);
 
 io.on('connection', (socket) => {
   console.log('User connected');
+
+  socket.emit('chatHistory', messages);
+
   socket.on('chatMessage', (data) => {
-    io.emit('chatMessage', data);
+    messages.push({
+      pseudo: data.pseudo,
+      message: data.message,
+      time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+    });
+
+    io.emit('chatMessage', messages[messages.length - 1]);
   });
+
   socket.on('disconnect', () => {
     console.log('User disconnected');
   });
@@ -42,9 +54,6 @@ app.use(session({
   saveUninitialized: false,
   cookie: { maxAge: 1000 * 60 * 60 }
 }));
-
-const usersRoutes = require("./routes/users")
-app.use("/users", usersRoutes)
 
 app.use((req, res, next) => {
   res.locals.user = req.session.user || null;
