@@ -216,7 +216,7 @@ function addMessage(data) {
 
   const textSpan = document.createElement('span');
   textSpan.classList.add('text');
-  textSpan.textContent = data.message;
+  textSpan.textContent = filterBadWords(data.message);
 
   const timeSpan = document.createElement('span');
   timeSpan.classList.add('time');
@@ -238,7 +238,6 @@ socket.on('chatHistory', (history) => {
 socket.on('chatMessage', (data) => {
   addMessage(data);
 });
-
 
 </script>
 </body>
