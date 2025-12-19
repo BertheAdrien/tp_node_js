@@ -6,10 +6,6 @@ router.get('/', function(req, res, next) {
   res.render('connexion', { title: 'Connexion' });
 });
 
-router.get('/age/:age/:connard', function(req, res, next) {
-  res.render('age', { title: 'Ton age', age: req.params.age, connard: req.params.connard });
-});
-
 router.get('/connexion', function(req, res, next) {
   res.render('connexion', { title: 'Connexion' });
 });
@@ -27,22 +23,20 @@ router.post('/connexion', function(req, res, next) {
   const { login, password } = req.body;
 
   if (login === 'admin' && password === 'admin') {
-    req.session.user = {
-      login: login
-    };
+    req.session.user = { login };
 
-    res.redirect('/dashboard');
-  } else {
-    res.render('connexion', {
-      title: 'Connexion',
-      error: 'Identifiants incorrects'
-    });
+    return res.redirect('/dashboard');
   }
+  res.render('connexion', {
+    title: 'Connexion',
+    error: 'Utilisateur ou mot de passe incorrect'
+  });
 });
+
 
 router.get('/dashboard', function(req, res) {
   if (!req.session.user) {
-    return res.redirect('/connexion'); // redirige si pas connecté
+    return res.redirect('/connexion'); 
   }
   res.render('dashboard', { title: 'Dashboard' });
 });

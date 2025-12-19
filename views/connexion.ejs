@@ -9,7 +9,11 @@
     </header>
 
     <div class="form-container">
-    <h1>Connexion 1</h1>
+    <h1>Connexion</h1>
+
+    <% if (typeof error !== 'undefined') { %>
+        <p class="error"><%= error %></p>
+    <% } %>
 
     <form method="post" action="/connexion">
 
